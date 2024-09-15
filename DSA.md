@@ -2,4 +2,4 @@
 
 ## 1. [Linkedlist](Linkedlist.md)
 
-## 2. [Stacks & Queues](Stacks&queues)
+## 2. [Stacks & Queues](Stacks&queues.md)
