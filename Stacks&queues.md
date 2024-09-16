@@ -272,3 +272,111 @@ class MyStack {
     }
 }
 ```
+
+### 6 . [Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/description/)
+
+```java
+class MyQueue {
+
+    Stack<Integer> input = new Stack<>();
+    Stack<Integer> output = new Stack<>();
+
+    public MyQueue() {
+
+    }
+
+    public void push(int x) {
+        input.push(x);
+    }
+
+    public int pop() {
+        if(output.empty()){
+            while(input.empty() == false){
+               output.push(input.pop());
+            }
+            return output.pop();
+        }
+        return output.pop();
+    }
+
+    public int peek() {
+        if (output.empty())
+            while (input.empty() == false) {
+                output.push( input.pop());
+            }
+        return output.peek();
+    }
+
+    public boolean empty() {
+        if(input.isEmpty() && output.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+    int size() {
+        return (output.size() + input.size());
+    }
+}
+```
+
+### 7 . [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/description/)
+
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Every close bracket has a corresponding open bracket of the same type.
+
+Example 1:
+
+Input: s = "()"
+
+Output: true
+
+```java
+class Solution {
+    // TC : O(n)
+    // SC : O(n)
+    public boolean isValid(String s) {
+        Stack<Character> st = new Stack<Character>();
+        for(char it : s.toCharArray()){
+            if(it == '(' || it =='[' || it == '{'){
+                st.push(it);
+            }
+            else{
+                if(st.isEmpty()){return false;}
+                char ch = st.pop();
+                if((it == ')' && ch =='(') || (it == ']' && ch =='[') || (it == '}' && ch =='{')){
+                    continue;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+        return st.isEmpty();
+    }
+}
+```
+
+### 8 . []()
+
+### . []()
+
+### . []()
+
+### . []()
+
+### . []()
+
+### . []()
+
+### . []()
+
+### . []()
+
+### . []()
+
+### . []()
