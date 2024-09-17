@@ -361,22 +361,134 @@ class Solution {
 }
 ```
 
-### 8 . []()
+### 8 . [Min Stack](https://leetcode.com/problems/min-stack/description/)
 
-### . []()
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
 
-### . []()
+Implement the MinStack class:
 
-### . []()
+MinStack() initializes the stack object.
+void push(int val) pushes the element val onto the stack.
+void pop() removes the element on the top of the stack.
+int top() gets the top element of the stack.
+int getMin() retrieves the minimum element in the stack.
+You must implement a solution with O(1) time complexity for each function.
 
-### . []()
+```java
+// TC : O(1)
+// SC : O(n)
+class MinStack {
 
-### . []()
+    Stack<Long> st = new Stack<Long>();
+    Long min;
 
-### . []()
+    public MinStack() {
+        min = Long.MAX_VALUE;
+    }
 
-### . []()
+    public void push(int value) {
+        Long val = Long.valueOf(value);
+        if (st.isEmpty()) {
+            min = val;
+            st.push(val);
+        } else {
+            if (val < min) {
+                st.push(2 * val - min);
+                min = val;
+            } else {
+                st.push(val);
+            }
+        }
+    }
 
-### . []()
+    public void pop() {
+        if (st.isEmpty()) {
+            return;
+        } else {
+            Long val = st.pop();
+            if (val < min) {
+                min = 2 * min - val;
+            }
+        }
 
-### . []()
+    }
+
+    public int top() {
+        Long val = st.peek();
+        if (val < min) {
+            return min.intValue();
+        }
+        return val.intValue();
+
+    }
+
+    public int getMin() {
+        return min.intValue();
+
+    }
+}
+```
+
+## Prefix, Infix, PostFix Conversion Problems
+
+### 9 . [Infix to Postfix](https://www.geeksforgeeks.org/problems/infix-to-postfix-1587115620/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=infix-to-postfix)
+
+![alt text](images/111.png)
+
+```java
+class Solution {
+    // TC : O(n)
+    // SC : O(n)
+    public static String infixToPostfix(String exp) {
+
+        String ans = new String("");
+        Stack<Character> st = new Stack<Character>();
+
+        for(int i=0; i<exp.length(); ++i){
+
+            char ch = exp.charAt(i);
+            if(Character.isLetterOrDigit(ch)){
+                ans += ch;;
+            }
+
+            else if(ch == '('){
+                st.push(ch);
+
+            }
+            else if(ch == ')'){
+                while(!st.isEmpty() && st.peek() != '('){
+                    ans += st.pop();
+                }
+                st.pop();
+            }
+            else{
+                while(!st.isEmpty() && Prec(ch) <= Prec(st.peek())){
+                    ans += st.pop();
+                }
+                st.push(ch);
+            }
+        }
+
+        while(!st.isEmpty()){
+            ans += st.pop();
+        }
+
+        return ans;
+    }
+    static int Prec (char ch){
+        switch(ch){
+            case '+':
+            case '-':
+                return 1;
+            case '*':
+            case '/':
+                return 2;
+            case '^':
+                return 3;
+        }
+        return -1;
+    }
+}
+```
+
+### 10 . []()
