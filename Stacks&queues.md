@@ -493,10 +493,10 @@ class Solution {
 
 ### 10 . [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/description/)
 
-
 Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
 
 ![alt text](images/1212.png)
+
 ```java
 class Solution {
     public int trap(int[] height) {
@@ -526,7 +526,54 @@ class Solution {
                 right--;
             }
         }
-        return res; 
+        return res;
     }
 }
 ```
+
+### 11 . [ Asteroid Collision](https://leetcode.com/problems/asteroid-collision/description/)
+
+We are given an array asteroids of integers representing asteroids in a row.
+
+For each asteroid, the absolute value represents its size, and the sign represents its direction (positive meaning right, negative meaning left). Each asteroid moves at the same speed.
+
+Find out the state of the asteroids after all collisions. If two asteroids meet, the smaller one will explode. If both are the same size, both will explode. Two asteroids moving in the same direction will never meet.
+
+![alt text](images/00990.png)
+
+```java
+class Solution {
+    public int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> stack = new Stack<>();
+
+        for (int a : asteroids) {
+            if (a > 0) {
+                stack.push(a);
+            } else {
+                while (!stack.isEmpty() && stack.peek() > 0 && stack.peek() < -a) {
+                    stack.pop();
+                }
+
+                if (stack.isEmpty() || stack.peek() < 0)  {
+                    stack.push(a);
+                }
+
+                if (stack.peek() == -a) {
+                    stack.pop();
+                }
+            }
+        }
+
+        int[] res = new int[stack.size()];
+        int i = stack.size() - 1;
+
+        while(!stack.isEmpty()) {
+            res[i--] = stack.pop();
+        }
+
+        return res;
+    }
+}
+```
+
+### 12 . []()
